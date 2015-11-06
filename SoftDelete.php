@@ -44,11 +44,11 @@ class SoftDelete extends Behavior
     public function softDelete() {
         if($this->timeAttribute) {
             $attributes[0] = $this->timeAttribute;
-            $this->owner->$attributes[0] = time();
+            $this->owner->{$attributes[0]} = time();
         }
 
         $attributes[1] = $this->statusAttribute;
-        $this->owner->$attributes[1] = $this->deletedValue;
+        $this->owner->{$attributes[1]} = $this->deletedValue;
 
         // save record
         return $this->owner->save(false, $attributes);
